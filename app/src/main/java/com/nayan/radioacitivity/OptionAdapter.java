@@ -75,7 +75,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
                 @Override
                 public void onClick(View v) {
                     mItem = mItems.get(getAdapterPosition());
-                    if (MainActivity.getInstance().optClick>1){
+                    if (MainActivity.getInstance().optClick>0){
                         return;
                     }
                     MainActivity.getInstance().stop++;
