@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nayan.radioacitivity.model.MOption;
 import com.nayan.radioacitivity.model.MQuestion;
@@ -66,29 +69,37 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         RadioButton radioButton;
+        RadioGroup radioGroup;
         Button btnFav;
 
-        public MyViewHolder(View itemView) {
+        public MyViewHolder(final View itemView) {
             super(itemView);
             radioButton = (RadioButton) itemView.findViewById(R.id.rdOption);
-            itemView.setOnClickListener(new View.OnClickListener() {
+            radioGroup = (RadioGroup) itemView.findViewById(R.id.rdGroup);
+            radioGroup.clearCheck();
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
-                public void onClick(View v) {
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
                     mItem = mItems.get(getAdapterPosition());
-                    if (MainActivity.getInstance().optClick>0){
-                        return;
+//                    if (MainActivity.getInstance().optClick>0) {
+//                        return;
+//                    }
+//                    int selectedId = radioGroup.getCheckedRadioButtonId();
+                    radioButton = (RadioButton) group.findViewById(checkedId);
+                    if (null != radioButton && checkedId > -1) {
+                        Toast.makeText(context, radioButton.getText(), Toast.LENGTH_SHORT).show();
                     }
+
                     MainActivity.getInstance().stop++;
-                    MainActivity.getInstance().color=1;
+                    MainActivity.getInstance().color = 1;
                     MainActivity.getInstance().optClick++;
+                    Log.e("optclick", " click " + MainActivity.getInstance().optClick);
                     MainActivity.getInstance().colorChange();
                     notifyDataSetChanged();
-                    if (MainActivity.getInstance().pos > 1)
-                        return;
                     if (mItem.getTag() == 1) {
                         MainActivity.getInstance().correct++;
                     } else {
-                       mItem.setTag(2);
+                        mItem.setTag(2);
                         notifyDataSetChanged();
                         MainActivity.getInstance().wrong++;
                     }
@@ -96,6 +107,33 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
                     MainActivity.getInstance().txtResult.setText(MainActivity.getInstance().correct + " : " + MainActivity.getInstance().wrong);
                 }
             });
+//            radioButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    mItem = mItems.get(getAdapterPosition());
+////                    if (MainActivity.getInstance().optClick>0) {
+////                        return;
+////                    }
+////                    int selectedId = radioGroup.getCheckedRadioButtonId();
+////                    radioButton = (RadioButton) itemView.findViewById(selectedId);
+//
+//                    MainActivity.getInstance().stop++;
+//                    MainActivity.getInstance().color = 1;
+//                    MainActivity.getInstance().optClick++;
+//                    Log.e("optclick", " click " + MainActivity.getInstance().optClick);
+//                    MainActivity.getInstance().colorChange();
+//                    notifyDataSetChanged();
+//                    if (mItem.getTag() == 1) {
+//                        MainActivity.getInstance().correct++;
+//                    } else {
+//                        mItem.setTag(2);
+//                        notifyDataSetChanged();
+//                        MainActivity.getInstance().wrong++;
+//                    }
+//
+//                    MainActivity.getInstance().txtResult.setText(MainActivity.getInstance().correct + " : " + MainActivity.getInstance().wrong);
+//                }
+//            });
         }
     }
 }
