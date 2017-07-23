@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rdGroup"
-    android:layout_width="fill_parent"
+<LinearLayout android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RadioButton
-        android:id="@+id/rdOption"
+    <TextView
+        android:id="@+id/tvQues"
+        android:text="What is your name ?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <RadioGroup
+        android:id="@+id/rdGroup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</RadioGroup>
+        <RadioButton
+            android:id="@+id/rdOption"
+            android:text="Optione 1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:text="Optione 2"
+            android:id="@+id/rdOption2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:text="Optione 3"
+            android:id="@+id/rdOption3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:text="Optione 4"
+            android:id="@+id/rdOption4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RadioGroup>
+
+
+</LinearLayout>

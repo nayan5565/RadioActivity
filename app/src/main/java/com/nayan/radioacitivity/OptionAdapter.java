@@ -25,8 +25,8 @@ import java.util.ArrayList;
 public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHolder> {
     private Context context;
     private LayoutInflater inflater;
-    private ArrayList<MOption> mItems;
-    private MOption mItem;
+    private ArrayList<MQuestion> mItems;
+    private MQuestion mItem;
     private int color;
     View view;
 
@@ -37,7 +37,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
         inflater = LayoutInflater.from(context);
     }
 
-    public void setData(ArrayList<MOption> mItems) {
+    public void setData(ArrayList<MQuestion> mItems) {
         this.mItems = mItems;
         notifyDataSetChanged();
     }
@@ -52,13 +52,19 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         mItem = mItems.get(position);
-        holder.radioButton.setText(mItem.getOption());
-        if (MainActivity.getInstance().color == 1)
-            if (mItem.getTag() == 1) {
-                holder.radioButton.setTextColor(Color.GREEN);
-            } else if (mItem.getTag() == 2) {
-                holder.radioButton.setTextColor(Color.RED);
-            }
+        holder.tvQues.setText(mItem.getQues());
+
+        holder.opr1.setText(mItem.getOptionArrayList().get(0).getOption());
+        holder.opt2.setText(mItem.getOptionArrayList().get(1).getOption());
+        holder.opt3.setText(mItem.getOptionArrayList().get(2).getOption());
+        holder.opt4.setText(mItem.getOptionArrayList().get(3).getOption());
+
+//        if (MainActivity.getInstance().color == 1)
+//            if (mItem.getTag() == 1) {
+//                holder.radioButton.setTextColor(Color.GREEN);
+//            } else if (mItem.getTag() == 2) {
+//                holder.radioButton.setTextColor(Color.RED);
+//            }
 
     }
 
@@ -70,11 +76,17 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
     class MyViewHolder extends RecyclerView.ViewHolder {
         RadioButton radioButton;
         RadioGroup radioGroup;
+        TextView tvQues;
+        RadioButton opr1, opt2, opt3, opt4;
         Button btnFav;
 
         public MyViewHolder(final View itemView) {
             super(itemView);
-            radioButton = (RadioButton) itemView.findViewById(R.id.rdOption);
+            tvQues = (TextView) itemView.findViewById(R.id.tvQues);
+            opr1 = (RadioButton) itemView.findViewById(R.id.rdOption);
+            opt2 = (RadioButton) itemView.findViewById(R.id.rdOption2);
+            opt3 = (RadioButton) itemView.findViewById(R.id.rdOption3);
+            opt4 = (RadioButton) itemView.findViewById(R.id.rdOption4);
             radioGroup = (RadioGroup) itemView.findViewById(R.id.rdGroup);
             radioGroup.clearCheck();
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -85,7 +97,6 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
 //                        return;
 //                    }
 //                    int selectedId = radioGroup.getCheckedRadioButtonId();
-                    radioButton = (RadioButton) group.findViewById(checkedId);
                     if (null != radioButton && checkedId > -1) {
                         Toast.makeText(context, radioButton.getText(), Toast.LENGTH_SHORT).show();
                     }
@@ -96,15 +107,15 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
                     Log.e("optclick", " click " + MainActivity.getInstance().optClick);
                     MainActivity.getInstance().colorChange();
                     notifyDataSetChanged();
-                    if (mItem.getTag() == 1) {
-                        MainActivity.getInstance().correct++;
-                    } else {
-                        mItem.setTag(2);
-                        notifyDataSetChanged();
-                        MainActivity.getInstance().wrong++;
-                    }
+//                    if (mItem.getTag() == 1) {
+//                        MainActivity.getInstance().correct++;
+//                    } else {
+//                        mItem.setTag(2);
+//                        notifyDataSetChanged();
+//                        MainActivity.getInstance().wrong++;
+//                    }
 
-                    MainActivity.getInstance().txtResult.setText(MainActivity.getInstance().correct + " : " + MainActivity.getInstance().wrong);
+//                    MainActivity.getInstance().txtResult.setText(MainActivity.getInstance().correct + " : " + MainActivity.getInstance().wrong);
                 }
             });
 //            radioButton.setOnClickListener(new View.OnClickListener() {

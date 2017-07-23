@@ -98,8 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         } else {
             Log.e("step", "two");
-            txtQues.setText(questionArrayList.get(pos).getQues());
-            adapter.setData(questionArrayList.get(pos).getOptionArrayList());
+            adapter.setData(questionArrayList);
             pos++;
         }
 
