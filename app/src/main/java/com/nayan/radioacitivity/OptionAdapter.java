@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHolder> {
     private Context context;
     private LayoutInflater inflater;
-    private ArrayList<MQuestion> mItems;
+    public ArrayList<MQuestion> mItems;
     private MQuestion mItem;
     private int color;
     int pos;
@@ -108,6 +108,9 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
 
                         if (btn.getId() == checkedId) {
                             mItem.setAnswer(btn.getText().toString());
+                            DatabaseHelper db=new DatabaseHelper(context);
+                            db.addFavData(mItem);
+//                            mItems.add(mItem);
                             Toast.makeText(context, btn.getText(), Toast.LENGTH_SHORT).show();
                             notifyDataSetChanged();
                         }
