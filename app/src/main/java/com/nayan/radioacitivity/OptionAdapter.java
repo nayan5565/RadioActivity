@@ -28,6 +28,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
     private ArrayList<MQuestion> mItems;
     private MQuestion mItem;
     private int color;
+    int pos;
     View view;
 
 
@@ -93,12 +94,34 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     mItem = mItems.get(getAdapterPosition());
+                    pos = getAdapterPosition();
+                    Log.e("opt", " pos " + pos);
 //                    if (MainActivity.getInstance().optClick>0) {
 //                        return;
 //                    }
-//                    int selectedId = radioGroup.getCheckedRadioButtonId();
-                    if (null != radioButton && checkedId > -1) {
-                        Toast.makeText(context, radioButton.getText(), Toast.LENGTH_SHORT).show();
+//                    opr1 = (RadioButton) group.findViewById(checkedId);
+//                    opt2 = (RadioButton) group.findViewById(checkedId);
+//                    opt3 = (RadioButton) group.findViewById(checkedId);
+//                    opt4 = (RadioButton) group.findViewById(checkedId);
+//                    if (null != opr1 && checkedId > -1) {
+//                        Toast.makeText(context, opr1.getText(), Toast.LENGTH_SHORT).show();
+//                    }
+//                    if (null != opt2 && checkedId > -1) {
+//                        Toast.makeText(context, opt2.getText(), Toast.LENGTH_SHORT).show();
+//                    }
+//                    if (null != opt3 && checkedId > -1) {
+//                        Toast.makeText(context, opt3.getText(), Toast.LENGTH_SHORT).show();
+//                    }
+//                    if (null != opt4 && checkedId > -1) {
+//                        Toast.makeText(context, opt4.getText(), Toast.LENGTH_SHORT).show();
+//                    }
+                    int childCount = group.getChildCount();
+                    for (int x = 0; x < childCount; x++) {
+                        RadioButton btn = (RadioButton) group.getChildAt(x);
+
+                        if (btn.getId() == checkedId) {
+                            Toast.makeText(context, btn.getText(), Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     MainActivity.getInstance().stop++;
@@ -113,38 +136,11 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
 //                        mItem.setTag(2);
 //                        notifyDataSetChanged();
 //                        MainActivity.getInstance().wrong++;
-//                    }
+////                    }
 
 //                    MainActivity.getInstance().txtResult.setText(MainActivity.getInstance().correct + " : " + MainActivity.getInstance().wrong);
                 }
             });
-//            radioButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    mItem = mItems.get(getAdapterPosition());
-////                    if (MainActivity.getInstance().optClick>0) {
-////                        return;
-////                    }
-////                    int selectedId = radioGroup.getCheckedRadioButtonId();
-////                    radioButton = (RadioButton) itemView.findViewById(selectedId);
-//
-//                    MainActivity.getInstance().stop++;
-//                    MainActivity.getInstance().color = 1;
-//                    MainActivity.getInstance().optClick++;
-//                    Log.e("optclick", " click " + MainActivity.getInstance().optClick);
-//                    MainActivity.getInstance().colorChange();
-//                    notifyDataSetChanged();
-//                    if (mItem.getTag() == 1) {
-//                        MainActivity.getInstance().correct++;
-//                    } else {
-//                        mItem.setTag(2);
-//                        notifyDataSetChanged();
-//                        MainActivity.getInstance().wrong++;
-//                    }
-//
-//                    MainActivity.getInstance().txtResult.setText(MainActivity.getInstance().correct + " : " + MainActivity.getInstance().wrong);
-//                }
-//            });
         }
     }
 }
