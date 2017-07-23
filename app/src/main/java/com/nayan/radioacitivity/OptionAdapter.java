@@ -96,7 +96,6 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     mItem = mItems.get(getAdapterPosition());
-                    pos = getAdapterPosition();
                     Log.e("opt", " pos " + pos);
 //                    if (MainActivity.getInstance().optClick>0) {
 //                        return;

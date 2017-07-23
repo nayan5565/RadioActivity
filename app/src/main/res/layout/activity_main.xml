@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="next" />
+        android:text="Submit" />
     <TextView
         android:id="@+id/txtQuestion"
         android:layout_width="wrap_content"
