@@ -61,12 +61,12 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
         holder.opt3.setText(mItem.getOptionArrayList().get(2).getOption());
         holder.opt4.setText(mItem.getOptionArrayList().get(3).getOption());
 
-//        if (MainActivity.getInstance().color == 1)
-//            if (mItem.getTag() == 1) {
-//                holder.radioButton.setTextColor(Color.GREEN);
-//            } else if (mItem.getTag() == 2) {
-//                holder.radioButton.setTextColor(Color.RED);
-//            }
+        if (MainActivity.getInstance().color == 1)
+            if (mItem.getOptionArrayList().get(pos).getTag()==1) {
+                holder.btn.setBackgroundColor(Color.GREEN);
+            } else if (mItem.getOptionArrayList().get(pos).getTag()==2) {
+                holder.btn.setBackgroundColor(Color.RED);
+            }
 
     }
 
@@ -76,11 +76,9 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        RadioButton radioButton;
         RadioGroup radioGroup;
-        TextView tvQues,txtAnswer;
-        RadioButton opr1, opt2, opt3, opt4;
-        Button btnFav;
+        TextView tvQues, txtAnswer;
+        RadioButton opr1, opt2, opt3, opt4,btn;
 
         public MyViewHolder(final View itemView) {
             super(itemView);
@@ -96,31 +94,52 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     mItem = mItems.get(getAdapterPosition());
-                    Log.e("opt", " pos " + pos);
-//                    if (MainActivity.getInstance().optClick>0) {
-//                        return;
-//                    }
-//                    }
+
+                    Log.e("opt", " pos " + checkedId);
+                    MainActivity.getInstance().color = 1;
+                    if (checkedId == R.id.rdOption) {
+                        pos=0;
+                        Log.e("opt", " pos " + 0);
+                    } else if (checkedId == R.id.rdOption2) {
+                        pos=1;
+                        Log.e("opt", " pos " + 1);
+                    } else if (checkedId == R.id.rdOption3) {
+                        pos=2;
+                        Log.e("opt", " pos " + 2);
+                    } else if (checkedId == R.id.rdOption4) {
+                        pos=3;
+                        Log.e("opt", " pos " + 3);
+                    }
                     int childCount = group.getChildCount();
                     for (int x = 0; x < childCount; x++) {
-                        RadioButton btn = (RadioButton) group.getChildAt(x);
+                         btn = (RadioButton) group.getChildAt(x);
 
                         if (btn.getId() == checkedId) {
+
+
                             mItem.setAnswer(btn.getText().toString());
-                            DatabaseHelper db=new DatabaseHelper(context);
-                            db.addFavData(mItem);
-//                            mItems.add(mItem);
+//                            DatabaseHelper db = new DatabaseHelper(context);
+//                            db.addFavData(mItem);
                             Toast.makeText(context, btn.getText(), Toast.LENGTH_SHORT).show();
-                            notifyDataSetChanged();
+                            if (mItem.getOptionArrayList().get(pos).getTag()==1){
+//                                btn.setTextColor(Color.GREEN);
+
+                            }
+                            else {
+//                                btn.setTextColor(Color.RED);
+                                mItem.getOptionArrayList().get(pos).setTag(2);
+                            }
+
+
                         }
                     }
 
-                    MainActivity.getInstance().stop++;
-                    MainActivity.getInstance().color = 1;
-                    MainActivity.getInstance().optClick++;
-                    Log.e("optclick", " click " + MainActivity.getInstance().optClick);
-                    MainActivity.getInstance().colorChange();
-                    notifyDataSetChanged();
+//                    MainActivity.getInstance().stop++;
+//
+//                    MainActivity.getInstance().optClick++;
+//                    Log.e("optclick", " click " + MainActivity.getInstance().optClick);
+//                    MainActivity.getInstance().colorChange();
+//                    notifyDataSetChanged();
 //                    if (mItem.getTag() == 1) {
 //                        MainActivity.getInstance().correct++;
 //                    } else {
@@ -129,7 +148,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
 //                        MainActivity.getInstance().wrong++;
 ////                    }
 
-//                    MainActivity.getInstance().txtResult.setText(MainActivity.getInstance().correct + " : " + MainActivity.getInstance().wrong);
+//                  MainActivity.getInstance().txtResult.setText(MainActivity.getInstance().correct + " : " + MainActivity.getInstance().wrong);
                 }
             });
         }
