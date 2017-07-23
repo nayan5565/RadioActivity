@@ -1,6 +1,7 @@
 package com.nayan.radioacitivity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -107,8 +108,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtResult.setText(correct + " : " + wrong);
     }
 
-    public void colorChange(){
-        if (stop==1){
+    public void colorChange() {
+        if (stop == 1) {
             btnNext.setBackgroundColor(Color.GREEN);
         }
     }
@@ -284,17 +285,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        if (stop == 0)
-            return;
-
-
-        if (v.getId() == R.id.btnNx) {
-            color = 0;
-            stop = 0;
-            optClick=0;
-            btnNext.setBackgroundColor(Color.RED);
-            prepareView();
-        }
+//        if (stop == 0)
+//            return;
+//
+//
+//        if (v.getId() == R.id.btnNx) {
+//            color = 0;
+//            stop = 0;
+//            optClick=0;
+//            btnNext.setBackgroundColor(Color.RED);
+//            prepareView();
+//        }
+        Intent intent = new Intent(MainActivity.this, SubmitActivity.class);
+        startActivity(intent);
 
     }
 

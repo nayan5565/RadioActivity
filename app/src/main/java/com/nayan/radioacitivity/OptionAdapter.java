@@ -54,6 +54,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
     public void onBindViewHolder(MyViewHolder holder, int position) {
         mItem = mItems.get(position);
         holder.tvQues.setText(mItem.getQues());
+        holder.txtAnswer.setText(mItem.getAnswer());
 
         holder.opr1.setText(mItem.getOptionArrayList().get(0).getOption());
         holder.opt2.setText(mItem.getOptionArrayList().get(1).getOption());
@@ -77,13 +78,14 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
     class MyViewHolder extends RecyclerView.ViewHolder {
         RadioButton radioButton;
         RadioGroup radioGroup;
-        TextView tvQues;
+        TextView tvQues,txtAnswer;
         RadioButton opr1, opt2, opt3, opt4;
         Button btnFav;
 
         public MyViewHolder(final View itemView) {
             super(itemView);
             tvQues = (TextView) itemView.findViewById(R.id.tvQues);
+            txtAnswer = (TextView) itemView.findViewById(R.id.tvAnswer);
             opr1 = (RadioButton) itemView.findViewById(R.id.rdOption);
             opt2 = (RadioButton) itemView.findViewById(R.id.rdOption2);
             opt3 = (RadioButton) itemView.findViewById(R.id.rdOption3);
@@ -99,28 +101,15 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
 //                    if (MainActivity.getInstance().optClick>0) {
 //                        return;
 //                    }
-//                    opr1 = (RadioButton) group.findViewById(checkedId);
-//                    opt2 = (RadioButton) group.findViewById(checkedId);
-//                    opt3 = (RadioButton) group.findViewById(checkedId);
-//                    opt4 = (RadioButton) group.findViewById(checkedId);
-//                    if (null != opr1 && checkedId > -1) {
-//                        Toast.makeText(context, opr1.getText(), Toast.LENGTH_SHORT).show();
-//                    }
-//                    if (null != opt2 && checkedId > -1) {
-//                        Toast.makeText(context, opt2.getText(), Toast.LENGTH_SHORT).show();
-//                    }
-//                    if (null != opt3 && checkedId > -1) {
-//                        Toast.makeText(context, opt3.getText(), Toast.LENGTH_SHORT).show();
-//                    }
-//                    if (null != opt4 && checkedId > -1) {
-//                        Toast.makeText(context, opt4.getText(), Toast.LENGTH_SHORT).show();
 //                    }
                     int childCount = group.getChildCount();
                     for (int x = 0; x < childCount; x++) {
                         RadioButton btn = (RadioButton) group.getChildAt(x);
 
                         if (btn.getId() == checkedId) {
+                            mItem.setAnswer(btn.getText().toString());
                             Toast.makeText(context, btn.getText(), Toast.LENGTH_SHORT).show();
+                            notifyDataSetChanged();
                         }
                     }
 

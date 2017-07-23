@@ -7,6 +7,16 @@ public class MOption {
     private int tag;
     private String option;
 
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    private String answer;
+
     public int getTag() {
         return tag;
     }

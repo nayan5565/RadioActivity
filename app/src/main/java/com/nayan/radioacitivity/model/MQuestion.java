@@ -8,6 +8,16 @@ import java.util.ArrayList;
 public class MQuestion {
     private int id;
     private String ques;
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    private String answer;
     private ArrayList<MOption> optionArrayList;
 
     public int getId() {
