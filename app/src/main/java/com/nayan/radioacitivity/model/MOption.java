@@ -7,15 +7,15 @@ public class MOption {
     private int tag;
     private String option;
 
-    public String getAnswer() {
+    public int getAnswer() {
         return answer;
     }
 
-    public void setAnswer(String answer) {
+    public void setAnswer(int answer) {
         this.answer = answer;
     }
 
-    private String answer;
+    private int answer;
 
     public int getTag() {
         return tag;

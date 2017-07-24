@@ -61,48 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void prepareView() {
-        if (pos >= questionArrayList.size()) {
-            Log.e("step", "one");
-            final Dialog dialog = new Dialog(this);
-            dialog.setCancelable(false);
-//            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setContentView(R.layout.dia_game_over);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            Button btnOk = (Button) dialog.findViewById(R.id.btnOK);
-            final TextView txtMark = (TextView) dialog.findViewById(R.id.txtScore);
-            TextView txtBestScore = (TextView) dialog.findViewById(R.id.txtBestScore);
-//            bestScore = db.getBestScores(parentId);
-            int score = correct * (100 / questionArrayList.size());
-//            if (score > bestScore) {
-//                bestScore = score;
-//                mScore.setParentId(Global.parentId);
-//                mScore.setBestScore(bestScore);
-//
-//                db.addBestScore(mScore);
-//            }
-
-
-//            Log.e("score", "best " + bestScore);
-            Log.e("score", "present " + score);
-
-            txtMark.setText("Congratulation!Your score is " + score + " out of 100");
-//            txtBestScore.setText("Best score " + bestScore + "");
-            btnOk.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                    finish();
-                }
-            });
-            dialog.show();
-
-            return;
-        } else {
-            Log.e("step", "two");
-            adapter.setData(questionArrayList);
-            pos++;
-        }
-
+        adapter.setData(questionArrayList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         txtResult.setText(correct + " : " + wrong);
@@ -285,21 +244,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-//        if (stop == 0)
-//            return;
-//
-//
         if (v.getId() == R.id.btnNx) {
-            Log.e("opt","bt click");
-            color=1;
+            Log.e("opt", "bt click");
+            color = 1;
+            txtResult.setText(correct + " : " + wrong);
             adapter.notifyDataSetChanged();
         }
-
-
-        questionArrayList.size();
-//        Intent intent = new Intent(MainActivity.this, SubmitActivity.class);
-//        startActivity(intent);
-
     }
 
 }

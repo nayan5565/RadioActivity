@@ -56,7 +56,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
         holder.opt2.setText(mItem.getOptionArrayList().get(1).getOption());
         holder.opt3.setText(mItem.getOptionArrayList().get(2).getOption());
         holder.opt4.setText(mItem.getOptionArrayList().get(3).getOption());
-        if (MainActivity.getInstance().color == 1){
+        if (MainActivity.getInstance().color == 1) {
             for (int i = 0; i < mItem.getOptionArrayList().size(); i++) {
                 if (mItem.getOptionArrayList().get(i).getTag() == 1) {
                     if (i == 0) {
@@ -81,7 +81,6 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
                 }
             }
         }
-
 
 
     }
@@ -129,15 +128,28 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
                     for (int i = 0; i < mItem.getOptionArrayList().size(); i++) {
                         if (mItem.getOptionArrayList().get(i).getTag() == 2) {
                             mItem.getOptionArrayList().get(i).setTag(0);
+                            MainActivity.getInstance().wrong--;
+                            Log.e("click", " wrong remove " + MainActivity.getInstance().wrong);
+                        }
+                        if (mItem.getOptionArrayList().get(i).getAnswer() == 1){
+                            mItem.getOptionArrayList().get(i).setAnswer(0);
+                            MainActivity.getInstance().correct--;
+                            Log.e("click", " correct remove " + MainActivity.getInstance().correct);
                         }
                     }
 
                     if (mItem.getOptionArrayList().get(pos).getTag() == 1) {
+                        mItem.getOptionArrayList().get(pos).setAnswer(1);
+                        if (mItem.getOptionArrayList().get(pos).getAnswer()==1){
+                            MainActivity.getInstance().correct++;
+                        }
 
                     } else {
                         mItem.getOptionArrayList().get(pos).setTag(2);
+                        MainActivity.getInstance().wrong++;
                     }
-                    mItem.getOptionArrayList().size();
+                    Log.e("click", " correct " + MainActivity.getInstance().correct);
+                    Log.e("click", " wrong " + MainActivity.getInstance().wrong);
 
 //                    MainActivity.getInstance().stop++;
 //
