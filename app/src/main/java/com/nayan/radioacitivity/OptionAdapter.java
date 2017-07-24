@@ -56,27 +56,28 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
         holder.opt2.setText(mItem.getOptionArrayList().get(1).getOption());
         holder.opt3.setText(mItem.getOptionArrayList().get(2).getOption());
         holder.opt4.setText(mItem.getOptionArrayList().get(3).getOption());
-
-        for (int i = 0; i < mItem.getOptionArrayList().size(); i++) {
-            if (mItem.getOptionArrayList().get(i).getTag() == 1) {
-                if (pos == 0) {
-                    holder.opt1.setTextColor(Color.GREEN);
-                } else if (pos == 1) {
-                    holder.opt2.setTextColor(Color.GREEN);
-                } else if (pos == 2) {
-                    holder.opt3.setTextColor(Color.GREEN);
-                } else if (pos == 3) {
-                    holder.opt4.setTextColor(Color.GREEN);
-                }
-            } else if (mItem.getOptionArrayList().get(i).getTag() == 2) {
-                if (pos == 0) {
-                    holder.opt1.setTextColor(Color.RED);
-                } else if (pos == 1) {
-                    holder.opt2.setTextColor(Color.RED);
-                } else if (pos == 2) {
-                    holder.opt3.setTextColor(Color.RED);
-                } else if (pos == 3) {
-                    holder.opt4.setTextColor(Color.RED);
+        if (MainActivity.getInstance().color == 1){
+            for (int i = 0; i < mItem.getOptionArrayList().size(); i++) {
+                if (mItem.getOptionArrayList().get(i).getTag() == 1) {
+                    if (i == 0) {
+                        holder.opt1.setTextColor(Color.GREEN);
+                    } else if (i == 1) {
+                        holder.opt2.setTextColor(Color.GREEN);
+                    } else if (i == 2) {
+                        holder.opt3.setTextColor(Color.GREEN);
+                    } else if (i == 3) {
+                        holder.opt4.setTextColor(Color.GREEN);
+                    }
+                } else if (mItem.getOptionArrayList().get(i).getTag() == 2) {
+                    if (i == 0) {
+                        holder.opt1.setTextColor(Color.RED);
+                    } else if (i == 1) {
+                        holder.opt2.setTextColor(Color.RED);
+                    } else if (i == 2) {
+                        holder.opt3.setTextColor(Color.RED);
+                    } else if (i == 3) {
+                        holder.opt4.setTextColor(Color.RED);
+                    }
                 }
             }
         }
@@ -111,7 +112,6 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
                     mItem = mItems.get(getAdapterPosition());
 
                     Log.e("opt", " pos " + checkedId);
-                    MainActivity.getInstance().color = 1;
                     if (checkedId == R.id.rdOption) {
                         pos = 0;
                         Log.e("opt", " pos " + 0);

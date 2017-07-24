@@ -289,15 +289,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            return;
 //
 //
-//        if (v.getId() == R.id.btnNx) {
-//            color = 0;
-//            stop = 0;
-//            optClick=0;
-//            btnNext.setBackgroundColor(Color.RED);
-//            prepareView();
-//        }
-       Log.e("opt","bt click");
-        adapter.notifyDataSetChanged();
+        if (v.getId() == R.id.btnNx) {
+            Log.e("opt","bt click");
+            color=1;
+            adapter.notifyDataSetChanged();
+        }
+
+
         questionArrayList.size();
 //        Intent intent = new Intent(MainActivity.this, SubmitActivity.class);
 //        startActivity(intent);
