@@ -63,9 +63,32 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
 
         if (MainActivity.getInstance().color == 1)
             if (mItem.getOptionArrayList().get(pos).getTag()==1) {
-                holder.btn.setBackgroundColor(Color.GREEN);
-            } else if (mItem.getOptionArrayList().get(pos).getTag()==2) {
-                holder.btn.setBackgroundColor(Color.RED);
+                if(pos==0){
+                    holder.opr1.setTextColor(Color.GREEN);
+                }
+                else if(pos==1){
+                    holder.opt2.setTextColor(Color.GREEN);
+                }
+                else if(pos==2){
+                    holder.opt3.setTextColor(Color.GREEN);
+                }
+                else if(pos==3){
+                    holder.opt4.setTextColor(Color.GREEN);
+                }
+            }
+            else if (mItem.getOptionArrayList().get(pos).getTag()==2) {
+                if(pos==0){
+                    holder.opr1.setTextColor(Color.RED);
+                }
+                else if(pos==1){
+                    holder.opt2.setTextColor(Color.RED);
+                }
+                else if(pos==2){
+                    holder.opt3.setTextColor(Color.RED);
+                }
+                else if(pos==3){
+                    holder.opt4.setTextColor(Color.RED);
+                }
             }
 
     }
@@ -78,7 +101,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
     class MyViewHolder extends RecyclerView.ViewHolder {
         RadioGroup radioGroup;
         TextView tvQues, txtAnswer;
-        RadioButton opr1, opt2, opt3, opt4,btn;
+        RadioButton opr1, opt2, opt3, opt4;
 
         public MyViewHolder(final View itemView) {
             super(itemView);
@@ -110,28 +133,17 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
                         pos=3;
                         Log.e("opt", " pos " + 3);
                     }
-                    int childCount = group.getChildCount();
-                    for (int x = 0; x < childCount; x++) {
-                         btn = (RadioButton) group.getChildAt(x);
 
-                        if (btn.getId() == checkedId) {
-
-
-                            mItem.setAnswer(btn.getText().toString());
-//                            DatabaseHelper db = new DatabaseHelper(context);
-//                            db.addFavData(mItem);
-                            Toast.makeText(context, btn.getText(), Toast.LENGTH_SHORT).show();
-                            if (mItem.getOptionArrayList().get(pos).getTag()==1){
-//                                btn.setTextColor(Color.GREEN);
-
-                            }
-                            else {
-//                                btn.setTextColor(Color.RED);
-                                mItem.getOptionArrayList().get(pos).setTag(2);
-                            }
-
-
+                    for (int i = 0; i < mItem.getOptionArrayList().size(); i++) {
+                        if(mItem.getOptionArrayList().get(i).getTag()==2){
+                            mItem.getOptionArrayList().get(i).setTag(0);
                         }
+                    }
+
+                    if(mItem.getOptionArrayList().get(pos).getTag()==1){
+
+                    }else{
+                        mItem.getOptionArrayList().get(pos).setTag(2);
                     }
 
 //                    MainActivity.getInstance().stop++;

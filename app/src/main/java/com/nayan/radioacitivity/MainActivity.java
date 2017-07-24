@@ -296,6 +296,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            btnNext.setBackgroundColor(Color.RED);
 //            prepareView();
 //        }
+       Log.e("opt","bt click");
         adapter.notifyDataSetChanged();
 //        Intent intent = new Intent(MainActivity.this, SubmitActivity.class);
 //        startActivity(intent);
