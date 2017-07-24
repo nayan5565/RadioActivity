@@ -298,6 +298,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        }
        Log.e("opt","bt click");
         adapter.notifyDataSetChanged();
+        questionArrayList.size();
 //        Intent intent = new Intent(MainActivity.this, SubmitActivity.class);
 //        startActivity(intent);
 

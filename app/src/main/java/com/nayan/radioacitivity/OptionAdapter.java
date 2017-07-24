@@ -1,20 +1,16 @@
 package com.nayan.radioacitivity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.nayan.radioacitivity.model.MOption;
 import com.nayan.radioacitivity.model.MQuestion;
 
 import java.util.ArrayList;
@@ -56,40 +52,36 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
         holder.tvQues.setText(mItem.getQues());
         holder.txtAnswer.setText(mItem.getAnswer());
 
-        holder.opr1.setText(mItem.getOptionArrayList().get(0).getOption());
+        holder.opt1.setText(mItem.getOptionArrayList().get(0).getOption());
         holder.opt2.setText(mItem.getOptionArrayList().get(1).getOption());
         holder.opt3.setText(mItem.getOptionArrayList().get(2).getOption());
         holder.opt4.setText(mItem.getOptionArrayList().get(3).getOption());
 
-        if (MainActivity.getInstance().color == 1)
-            if (mItem.getOptionArrayList().get(pos).getTag()==1) {
-                if(pos==0){
-                    holder.opr1.setTextColor(Color.GREEN);
-                }
-                else if(pos==1){
+        for (int i = 0; i < mItem.getOptionArrayList().size(); i++) {
+            if (mItem.getOptionArrayList().get(i).getTag() == 1) {
+                if (pos == 0) {
+                    holder.opt1.setTextColor(Color.GREEN);
+                } else if (pos == 1) {
                     holder.opt2.setTextColor(Color.GREEN);
-                }
-                else if(pos==2){
+                } else if (pos == 2) {
                     holder.opt3.setTextColor(Color.GREEN);
-                }
-                else if(pos==3){
+                } else if (pos == 3) {
                     holder.opt4.setTextColor(Color.GREEN);
                 }
-            }
-            else if (mItem.getOptionArrayList().get(pos).getTag()==2) {
-                if(pos==0){
-                    holder.opr1.setTextColor(Color.RED);
-                }
-                else if(pos==1){
+            } else if (mItem.getOptionArrayList().get(i).getTag() == 2) {
+                if (pos == 0) {
+                    holder.opt1.setTextColor(Color.RED);
+                } else if (pos == 1) {
                     holder.opt2.setTextColor(Color.RED);
-                }
-                else if(pos==2){
+                } else if (pos == 2) {
                     holder.opt3.setTextColor(Color.RED);
-                }
-                else if(pos==3){
+                } else if (pos == 3) {
                     holder.opt4.setTextColor(Color.RED);
                 }
             }
+        }
+
+
 
     }
 
@@ -101,13 +93,13 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
     class MyViewHolder extends RecyclerView.ViewHolder {
         RadioGroup radioGroup;
         TextView tvQues, txtAnswer;
-        RadioButton opr1, opt2, opt3, opt4;
+        RadioButton opt1, opt2, opt3, opt4;
 
         public MyViewHolder(final View itemView) {
             super(itemView);
             tvQues = (TextView) itemView.findViewById(R.id.tvQues);
             txtAnswer = (TextView) itemView.findViewById(R.id.tvAnswer);
-            opr1 = (RadioButton) itemView.findViewById(R.id.rdOption);
+            opt1 = (RadioButton) itemView.findViewById(R.id.rdOption);
             opt2 = (RadioButton) itemView.findViewById(R.id.rdOption2);
             opt3 = (RadioButton) itemView.findViewById(R.id.rdOption3);
             opt4 = (RadioButton) itemView.findViewById(R.id.rdOption4);
@@ -121,30 +113,31 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
                     Log.e("opt", " pos " + checkedId);
                     MainActivity.getInstance().color = 1;
                     if (checkedId == R.id.rdOption) {
-                        pos=0;
+                        pos = 0;
                         Log.e("opt", " pos " + 0);
                     } else if (checkedId == R.id.rdOption2) {
-                        pos=1;
+                        pos = 1;
                         Log.e("opt", " pos " + 1);
                     } else if (checkedId == R.id.rdOption3) {
-                        pos=2;
+                        pos = 2;
                         Log.e("opt", " pos " + 2);
                     } else if (checkedId == R.id.rdOption4) {
-                        pos=3;
+                        pos = 3;
                         Log.e("opt", " pos " + 3);
                     }
 
                     for (int i = 0; i < mItem.getOptionArrayList().size(); i++) {
-                        if(mItem.getOptionArrayList().get(i).getTag()==2){
+                        if (mItem.getOptionArrayList().get(i).getTag() == 2) {
                             mItem.getOptionArrayList().get(i).setTag(0);
                         }
                     }
 
-                    if(mItem.getOptionArrayList().get(pos).getTag()==1){
+                    if (mItem.getOptionArrayList().get(pos).getTag() == 1) {
 
-                    }else{
+                    } else {
                         mItem.getOptionArrayList().get(pos).setTag(2);
                     }
+                    mItem.getOptionArrayList().size();
 
 //                    MainActivity.getInstance().stop++;
 //
